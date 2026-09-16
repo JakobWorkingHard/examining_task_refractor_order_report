@@ -11,7 +11,9 @@ from src.lets_goooo.processing import(
     cr_total_sales,
     number_of_orders,
     number_of_returns,
-    fillna_numerical
+    fillna_numerical,
+    fillna_text,
+    fix_them_returned
 )
 
 INPUT_FILE = "data/orders.csv"
@@ -24,22 +26,6 @@ try:
 
     are_the_columns_really_there(data)
 
-    # required = {
-    #     "order_id",
-    #     "order_date",
-    #     "customer_id",
-    #     "region",
-    #     "product_category",
-    #     "quantity",
-    #     "unit_price",
-    #     "discount",
-    #     "returned",
-    # }
-
-    # if not required.issubset(data.columns):
-    #     raise Exception("Fel data")
-
-    # print("Läste in", len(data), "rader")
 
     numerical_columns_list = ["quantity", "unit_price", "discount"]
 
@@ -51,85 +37,24 @@ try:
         excluded_columns= {"returned"}
         )
 
-    data["quantity"] = fillna_numerical(data["quantity"], 1)
-    data["unit_price"] = fillna_numerical(data["unit_price"],data["unit_price"].median())
-    data["discount"] = fillna_numerical(data["discount"], 0)
+    the_numerical_dic_man = {"quantity": 1, "unit_price": data["unit_price"].median(), "discount": 0}
+    the_text_dic_dude = {"region": "Unknown", "product_category": "Unknown"}
 
-    # data["quantity"] = data["quantity"].fillna(1)
-    # data["unit_price"] = data["unit_price"].fillna(data["unit_price"].median())
-    # data["discount"] = data["discount"].fillna(0)
+    for key, value in the_numerical_dic_man.items():
+        data[key] = fillna_numerical(data[key], value)
+
+    for key, value in the_text_dic_dude.items():
+        data[key] = fillna_text(data[key], value)
 
 
-    data["region"] = data["region"].fillna("Unknown").astype(str).str.strip().str.title()
-    data["product_category"] = (
-        data["product_category"]
-        .fillna("Unknown")
-        .astype(str)
-        .str.strip()
-        .str.title()
-    )
 
-    # data["quantity"] = pd.to_numeric(
-    #     data["quantity"], errors="coerce"
-    # ).fillna(1)
+    list_of_true_returned_dudes = ["true", "yes", "1", "ja"]
 
-    # data["unit_price"] = pd.to_numeric(
-    #     data["unit_price"], errors="coerce"
-    # )
-    # data["unit_price"] = data["unit_price"].fillna(
-    #     data["unit_price"].median()
-    # )
-
-    # data["discount"] = pd.to_numeric(
-    #     data["discount"], errors="coerce"
-    # ).fillna(0)
-
-    data["returned"] = (
-        data["returned"]
-        .fillna("false")
-        .astype(str)
-        .str.strip()
-        .str.lower()
-        .isin(["true", "yes", "1", "ja"])
-    )
+    data["returned"] = fix_them_returned(data["returned"], "false", list_of_true_returned_dudes)
 
 
 
 
-
-
-    # data["region"] = data["region"].fillna("Unknown").astype(str).str.strip().str.title()
-    # data["product_category"] = (
-    #     data["product_category"]
-    #     .fillna("Unknown")
-    #     .astype(str)
-    #     .str.strip()
-    #     .str.title()
-    # )
-
-    # data["quantity"] = pd.to_numeric(
-    #     data["quantity"], errors="coerce"
-    # ).fillna(1)
-
-    # data["unit_price"] = pd.to_numeric(
-    #     data["unit_price"], errors="coerce"
-    # )
-    # data["unit_price"] = data["unit_price"].fillna(
-    #     data["unit_price"].median()
-    # )
-
-    # data["discount"] = pd.to_numeric(
-    #     data["discount"], errors="coerce"
-    # ).fillna(0)
-
-    # data["returned"] = (
-    #     data["returned"]
-    #     .fillna("false")
-    #     .astype(str)
-    #     .str.strip()
-    #     .str.lower()
-    #     .isin(["true", "yes", "1", "ja"])
-    # )
 
     data["order_value"] = (
         data["quantity"] * data["unit_price"]

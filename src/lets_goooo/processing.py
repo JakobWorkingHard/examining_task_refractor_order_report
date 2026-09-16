@@ -11,7 +11,12 @@ def fillna_numerical(data_with_column, fill_with):
 
 
 def fillna_text(data_with_column, fill_with):
-    return 
+    return data_with_column.fillna(fill_with).astype(str).str.strip().str.title()
+
+
+def fix_them_returned(data_with_column, fill_na_with, fill_is_in_true: list):
+    return (data_with_column.fillna(fill_na_with).astype(str).str.strip().str.lower().isin(fill_is_in_true))
+
 
 
 def cr_order_value(data, 
