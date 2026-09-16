@@ -15,6 +15,7 @@ from src.lets_goooo.processing import(
     fillna_text,
     fix_them_returned
 )
+from src.lets_goooo.metric import calculate_sales_metrics, create_overview
 
 # INPUT_FILE = "data/orders.csv"
 OUTPUT_FOLDER = "output"
@@ -77,20 +78,22 @@ try:
     # number_of_orders = data["order_id"].nunique()
     # number_of_returns = int(data["returned"].sum())
 
-    overview = pd.DataFrame(
-        {
-            "metric": [
-                "total_sales",
-                "order_count",
-                "return_count",
-            ],
-            "value": [
-                total_sales,
-                number_of_orders,
-                number_of_returns,
-            ],
-        }
-    )
+    # overview = pd.DataFrame(
+    #     {
+    #         "metric": [
+    #             "total_sales",
+    #             "order_count",
+    #             "return_count",
+    #         ],
+    #         "value": [
+    #             total_sales,
+    #             number_of_orders,
+    #             number_of_returns,
+    #         ],
+    #     }
+    # )
+
+    overview = create_overview(total_sales, number_of_orders, number_of_returns)
 
     overview.to_csv(
         os.path.join(
@@ -102,35 +105,37 @@ try:
 
     print("Sparade overview.csv")
 
-    result1 = (
-        data.groupby(
-            "product_category",
-            as_index=False,
-        )
-        .agg(
-            order_count=("order_id", "nunique"),
-            total_sales=("discounted_value", "sum"),
-            returns=("returned", "sum"),
-        )
-    )
+    result1 = calculate_sales_metrics(data, "product_category")
 
-    result1["total_sales"] = (
-        result1["total_sales"].round(2)
-    )
+    # result1 = (
+    #     data.groupby(
+    #         "product_category",
+    #         as_index=False,
+    #     )
+    #     .agg(
+    #         order_count=("order_id", "nunique"),
+    #         total_sales=("discounted_value", "sum"),
+    #         returns=("returned", "sum"),
+    #     )
+    # )
 
-    result1["return_rate"] = (
-        result1["returns"]
-        / result1["order_count"]
-    ).round(3)
+    # result1["total_sales"] = (
+    #     result1["total_sales"].round(2)
+    # )
 
-    result1 = (
-        result1
-        .sort_values(
-            "total_sales",
-            ascending=False,
-        )
-        .reset_index(drop=True)
-    )
+    # result1["return_rate"] = (
+    #     result1["returns"]
+    #     / result1["order_count"]
+    # ).round(3)
+
+    # result1 = (
+    #     result1
+    #     .sort_values(
+    #         "total_sales",
+    #         ascending=False,
+    #     )
+    #     .reset_index(drop=True)
+    # )
 
     result1.to_csv(
         os.path.join(
