@@ -14,6 +14,7 @@ def fillna_text(data_with_column, fill_with):
     return data_with_column.fillna(fill_with).astype(str).str.strip().str.title()
 
 
+
 def fix_them_returned(data_with_column, fill_na_with, fill_is_in_true: list):
     return (data_with_column.fillna(fill_na_with).astype(str).str.strip().str.lower().isin(fill_is_in_true))
 
@@ -55,7 +56,7 @@ def cr_total_sales(data,
 
 
 
-def number_of_orders(data, order_id_column: str = "order_id"):
+def number_of_orders_function(data, order_id_column: str = "order_id"):
     """Returnerar antal ordrar"""
 
     logger.info("Beräknar antal ordrar")
@@ -64,7 +65,7 @@ def number_of_orders(data, order_id_column: str = "order_id"):
 
 
 
-def number_of_returns(data, returned_column: str = "returned"):
+def number_of_returns_function(data, returned_column: str = "returned"):
     """Returnerar antal returer"""
 
     logger.info("Beräknar antal returer")

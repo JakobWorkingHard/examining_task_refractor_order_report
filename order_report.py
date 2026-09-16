@@ -9,14 +9,14 @@ from src.lets_goooo.processing import(
     cr_order_value,
     cr_discounted_value,
     cr_total_sales,
-    number_of_orders,
-    number_of_returns,
+    number_of_orders_function,
+    number_of_returns_function,
     fillna_numerical,
     fillna_text,
     fix_them_returned
 )
 
-INPUT_FILE = "data/orders.csv"
+# INPUT_FILE = "data/orders.csv"
 OUTPUT_FOLDER = "output"
 
 print("Startar orderrapport")
@@ -54,23 +54,28 @@ try:
 
 
 
+    data = cr_order_value(data, "quantity", "unit_price")
+    data = cr_discounted_value(data, "order_value", "discount")
+    total_sales = cr_total_sales(data, "discounted_value")
 
+    number_of_orders = number_of_orders_function(data, "order_id")
+    number_of_returns = number_of_returns_function(data, "returned")
 
-    data["order_value"] = (
-        data["quantity"] * data["unit_price"]
-    )
+    # data["order_value"] = (
+    #     data["quantity"] * data["unit_price"]
+    # )
 
-    data["discounted_value"] = (
-        data["order_value"] * (1 - data["discount"])
-    )
+    # data["discounted_value"] = (
+    #     data["order_value"] * (1 - data["discount"])
+    # )
 
-    total_sales = round(
-        data["discounted_value"].sum(),
-        2,
-    )
+    # total_sales = round(
+    #     data["discounted_value"].sum(),
+    #     2,
+    # )
 
-    number_of_orders = data["order_id"].nunique()
-    number_of_returns = int(data["returned"].sum())
+    # number_of_orders = data["order_id"].nunique()
+    # number_of_returns = int(data["returned"].sum())
 
     overview = pd.DataFrame(
         {
