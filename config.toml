@@ -1,0 +1,20 @@
+[order_report]
+input_file = "data/orders.csv"
+output_folder = "output"
+
+# NaN-flaggningströsklar
+nan_warn_pct = 0.05   # 5% NaN i en kolumn => varning
+nan_error_pct = 0.20  # 20% => error
+
+# Obligatoriska kolumner i vår csv fil :D
+required_columns = [
+    "order_id",
+    "order_date",
+    "customer_id",
+    "region",
+    "product_category",
+    "quantity",
+    "unit_price",
+    "discount",
+    "returned"
+]
