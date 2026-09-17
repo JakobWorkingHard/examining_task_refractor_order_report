@@ -1,5 +1,6 @@
 import pandas as pd
 import logging
+import os
 from src.lets_goooo.config import INPUT_FILE, OUTPUT_FOLDER
 
 
@@ -23,4 +24,21 @@ def open_my_file_yao(filepath=INPUT_FILE):
 
     except Exception as e:
         logger.error("Någonting oväntat har skett här, dags att ta på sig detektivglasögonen och börja leta fel!")
+        raise
+
+def save_my_file_please(data, name_your_file: str, filepath = OUTPUT_FOLDER):
+    logger.info("Sparar en förhoppningsvis okej rapport i ", filepath)
+
+    try:
+        logger.info("Sparades 100% korrekt")
+        return data.to_csv(
+            os.path.join(
+                filepath,
+                name_your_file,
+            ),
+            index=False,
+        )
+
+    except Exception as e:
+        logger.error("Lyckades inte spara ner filen av okänd anledning, förmodligen problem med ", filepath)
         raise
