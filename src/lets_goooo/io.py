@@ -15,7 +15,7 @@ def open_my_file_yao(filepath):
         return pd.read_csv(filepath)
 
     except FileNotFoundError:
-        logger.error("Nu är det nåt som är galet, har du verkligen satt in rätt sökväg till filen? Ändra i config.toml, för ", INPUT_FILE, "finns inte.")
+        logger.error("Nu är det nåt som är galet, har du verkligen satt in rätt sökväg till filen? Ändra i config.toml, för ", filepath, "finns inte.")
         raise
 
     except PermissionError:
