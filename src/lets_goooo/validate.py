@@ -1,17 +1,12 @@
 import pandas as pd
 import logging
-from src.lets_goooo.config import (
-    REQUIRED_COLUMNS, 
-    NAN_WARN_PCT, 
-    NAN_ERROR_PCT
-)
 
 
 logger = logging.getLogger(__name__)
 
 
 
-def are_the_columns_really_there(data, input_required_columns: set = REQUIRED_COLUMNS):
+def are_the_columns_really_there(data, input_required_columns: set):
     logger.info("Läser in obligatoriska kolumner")
 
 
@@ -38,10 +33,11 @@ def to_datetime(data, column_name: str):
 def how_many_NaNs_or_weird_stuff_in_the_data_are_we_dealing_with_man(
         data, 
         numerical_columns: list, 
-        date_time_column: str,
-        excluded_columns: set = {"returned"}, 
-        nan_warn_pct = NAN_WARN_PCT, 
-        nan_error_pct = NAN_ERROR_PCT):
+        date_time_column: str, 
+        nan_warn_pct,
+        nan_error_pct,
+        excluded_columns: set = {"returned"}
+        ):
 
     logger.info("Konverterar konstiga värden till NaN")
     df = data.copy()

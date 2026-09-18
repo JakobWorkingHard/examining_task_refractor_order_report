@@ -1,0 +1,59 @@
+INFO:src.lets_goooo.io:Puuh, filen lyckades läsas in, det var tur det!
+INFO:src.lets_goooo.validate:Läser in obligatoriska kolumner
+INFO:src.lets_goooo.validate:Alla obligatoriska kolumner finns med i datan
+INFO:src.lets_goooo.validate:Konverterar konstiga värden till NaN
+INFO:src.lets_goooo.validate:Gör om quantity till numerical
+INFO:src.lets_goooo.validate:Gör om unit_price till numerical
+INFO:src.lets_goooo.validate:Gör om discount till numerical
+INFO:src.lets_goooo.validate:Gör om order_date till datetime
+INFO:src.lets_goooo.validate:Validering godkänd! Skickar vidare konverterad data.
+INFO:src.lets_goooo.io:Puuh, filen lyckades läsas in, det var tur det!
+INFO:src.lets_goooo.validate:Läser in obligatoriska kolumner
+INFO:src.lets_goooo.validate:Alla obligatoriska kolumner finns med i datan
+INFO:src.lets_goooo.validate:Konverterar konstiga värden till NaN
+INFO:src.lets_goooo.validate:Gör om quantity till numerical
+INFO:src.lets_goooo.validate:Gör om unit_price till numerical
+INFO:src.lets_goooo.validate:Gör om discount till numerical
+INFO:src.lets_goooo.validate:Gör om order_date till datetime
+INFO:src.lets_goooo.validate:Validering godkänd! Skickar vidare konverterad data.
+INFO:src.lets_goooo.processing:Beräknar order_value
+INFO:src.lets_goooo.processing:Beräknar discounted value
+INFO:src.lets_goooo.processing:Beräknar total sales
+INFO:src.lets_goooo.processing:Beräknar antal ordrar
+INFO:src.lets_goooo.processing:Beräknar antal returer
+INFO:src.lets_goooo.io:Puuh, filen lyckades läsas in, det var tur det!
+INFO:src.lets_goooo.validate:Läser in obligatoriska kolumner
+INFO:src.lets_goooo.validate:Alla obligatoriska kolumner finns med i datan
+INFO:src.lets_goooo.validate:Konverterar konstiga värden till NaN
+INFO:src.lets_goooo.validate:Gör om quantity till numerical
+INFO:src.lets_goooo.validate:Gör om unit_price till numerical
+INFO:src.lets_goooo.validate:Gör om discount till numerical
+INFO:src.lets_goooo.validate:Gör om order_date till datetime
+INFO:src.lets_goooo.validate:Validering godkänd! Skickar vidare konverterad data.
+INFO:src.lets_goooo.processing:Beräknar order_value
+INFO:src.lets_goooo.processing:Beräknar discounted value
+INFO:src.lets_goooo.processing:Beräknar total sales
+INFO:src.lets_goooo.processing:Beräknar antal ordrar
+INFO:src.lets_goooo.processing:Beräknar antal returer
+INFO:src.lets_goooo.io:Sparades 100% korrekt
+INFO:src.lets_goooo.io:Sparades 100% korrekt
+INFO:src.lets_goooo.io:Sparades 100% korrekt
+INFO:src.lets_goooo.io:Sparades 100% korrekt
+INFO:src.lets_goooo.io:Puuh, filen lyckades läsas in, det var tur det!
+INFO:src.lets_goooo.validate:Läser in obligatoriska kolumner
+INFO:src.lets_goooo.validate:Alla obligatoriska kolumner finns med i datan
+INFO:src.lets_goooo.validate:Konverterar konstiga värden till NaN
+INFO:src.lets_goooo.validate:Gör om quantity till numerical
+INFO:src.lets_goooo.validate:Gör om unit_price till numerical
+INFO:src.lets_goooo.validate:Gör om discount till numerical
+INFO:src.lets_goooo.validate:Gör om order_date till datetime
+INFO:src.lets_goooo.validate:Validering godkänd! Skickar vidare konverterad data.
+INFO:src.lets_goooo.processing:Beräknar order_value
+INFO:src.lets_goooo.processing:Beräknar discounted value
+INFO:src.lets_goooo.processing:Beräknar total sales
+INFO:src.lets_goooo.processing:Beräknar antal ordrar
+INFO:src.lets_goooo.processing:Beräknar antal returer
+INFO:src.lets_goooo.io:Sparades 100% korrekt
+INFO:src.lets_goooo.io:Sparades 100% korrekt
+INFO:src.lets_goooo.io:Sparades 100% korrekt
+INFO:src.lets_goooo.io:Sparades 100% korrekt

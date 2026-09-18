@@ -18,3 +18,10 @@ required_columns = [
     "discount",
     "returned"
 ]
+
+
+[fillna]
+unit_price_fillna = "unit_price.median"
+quantity_fillna  = 1.0
+text_fillna    = "Unknown"
+discount_fillna = 0.0

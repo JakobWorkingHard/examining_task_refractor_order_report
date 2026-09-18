@@ -1,34 +1,32 @@
+from dataclasses import dataclass
 from pathlib import Path
 import tomllib
 
+@dataclass(frozen=True)
+class ReportConfig:
+    input_file: Path
+    output_folder: Path
+    nan_warn_pct: float
+    nan_error_pct: float
+    required_columns: set[str]
+    unit_price_fillna: str        
+    quantity_fillna: float
+    text_fillna: str
+    discount_fillna: float
 
-def load_config_data(path_to_file):
-    try:
-        with open(path_to_file, "rb") as f:
-            _cfg = tomllib.load(f)["order_report"]
-            return _cfg
-    except FileNotFoundError:
-        raise FileNotFoundError("ERROR: Hittade ej din config.toml via sökvägen ", path_to_file)
-
-    except tomllib.TOMLDecodeError as e:
-        raise ValueError("ERROR: Går ej att läsa din config.toml fil")
-
-    except KeyError:
-        raise KeyError("ERROR: Någonting är fel med sektionen [order_report] i din config.toml")
-
-
-huvudmapp = Path(__file__).resolve().parent.parent.parent
-config_sökväg = huvudmapp / "config.toml"
-
-_cfg = load_config_data(config_sökväg)
-
-INPUT_FILE = Path(_cfg["input_file"])
-OUTPUT_FOLDER = Path(_cfg["output_folder"])
-
-
-NAN_WARN_PCT = _cfg["nan_warn_pct"]
-NAN_ERROR_PCT = _cfg["nan_error_pct"]
-
-
-REQUIRED_COLUMNS = set(_cfg["required_columns"])
-
+def load_config(path: Path) -> ReportConfig:
+    with open(path, "rb") as f:
+        raw = tomllib.load(f)         
+    o = raw["order_report"]
+    fill = raw["fillna"]
+    return ReportConfig(
+        input_file=Path(o["input_file"]),
+        output_folder=Path(o["output_folder"]),
+        nan_warn_pct=o["nan_warn_pct"],
+        nan_error_pct=o["nan_error_pct"],
+        required_columns=set(o["required_columns"]),
+        unit_price_fillna=fill["unit_price_fillna"],
+        quantity_fillna=fill["quantity_fillna"],
+        text_fillna=fill["text_fillna"],
+        discount_fillna=fill["discount_fillna"],
+    )

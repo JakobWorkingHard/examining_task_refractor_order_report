@@ -1,14 +1,14 @@
 import pandas as pd
 import logging
 import os
-from src.lets_goooo.config import INPUT_FILE, OUTPUT_FOLDER
+
 
 
 logger = logging.getLogger(__name__)
 
 
-def open_my_file_yao(filepath=INPUT_FILE):
-    logger.info("Öppnar den vackraste filen i hela Minnesota från: ", INPUT_FILE)
+def open_my_file_yao(filepath):
+    logger.info("Öppnar den vackraste filen i hela Minnesota från: ", filepath)
 
     try:
         logger.info("Puuh, filen lyckades läsas in, det var tur det!")
@@ -26,7 +26,7 @@ def open_my_file_yao(filepath=INPUT_FILE):
         logger.error("Någonting oväntat har skett här, dags att ta på sig detektivglasögonen och börja leta fel!")
         raise
 
-def save_my_file_please(data, name_your_file: str, filepath = OUTPUT_FOLDER):
+def save_my_file_please(data, name_your_file: str, filepath):
     logger.info("Sparar en förhoppningsvis okej rapport i ", filepath)
 
     try:
